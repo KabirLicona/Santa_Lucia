@@ -28,6 +28,5 @@ class TipoReporte extends Migration
      */
     public function down()
     {
-        //
     }
 }
