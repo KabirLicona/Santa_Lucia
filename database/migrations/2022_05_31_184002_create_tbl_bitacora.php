@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBitacora extends Migration
+class CreateTblBitacora extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBitacora extends Migration
      */
     public function up()
     {
-        Schema::create('bitacora', function (Blueprint $table) {
+        Schema::create('tbl_bitacora', function (Blueprint $table) {
             $table->bigIncrements('COD_BITACORA');
             //$table->string('COD_USUARIO'); NO SE COMO SE AGREGA USUARIOS
             $table->unsignedBigInteger('COD_TIPO_BITACORA');
@@ -22,7 +22,7 @@ class CreateBitacora extends Migration
             $table->string('INFO');
             $table->datetime('FECHA_CREACION');
             //$table->foreign('COD_USUARIO')->references('id')->on('users');
-            $table->foreign('COD_TIPO_BITACORA')->references('COD_TIPO_BITACORA')->on('tipo_bitacora');
+            $table->foreign('COD_TIPO_BITACORA')->references('COD_TIPO_BITACORA')->on('tbl_tipo_bitacora');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateBitacora extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bitacora');
+        Schema::dropIfExists('tbl_bitacora');
     }
 }

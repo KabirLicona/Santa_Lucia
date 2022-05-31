@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoPagos extends Migration
+class CreateTblEmpresa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTipoPagos extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_pagos', function (Blueprint $table) {
-            $table->bigIncrements('COD_TIPO_PAGO');
-            $table->enum("TIPO_CREDITO",["T","CK","E"]);
-            $table->string('DESCRIPCION');
+        Schema::create('tbl_empresa', function (Blueprint $table) {
+            $table->bigIncrements('COD_EMPRESA');
+            $table->string('NOM_EMPRESA');
+            $table->integer('TEL_EMPRESA');
+            $table->string('DIR_EMPRESA');
+            $table->string('CONTACTO_EMPRESA');
             $table->timestamps();
             $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION
         });
@@ -29,6 +31,6 @@ class CreateTipoPagos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_pagos');
+        Schema::dropIfExists('tbl_empresa');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoReporte extends Migration
+class CreateTblCreditos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateTipoReporte extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_reporte', function (Blueprint $table) {
-            $table->bigIncrements('COD_TIPO_REPORTE');
+        Schema::create('tbl_creditos', function (Blueprint $table) {
+            $table->bigIncrements('COD_CREDITO');
+            $table->enum("TIPO_CREDITO",["C","M","L"]);
+            $table->integer('DIAS_CREDITO');
             $table->string('DESCRIPCION');
-            $table->string('ESTADO');
             $table->timestamps();
-            $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION AUNQUE ESTE AQUI NO ES NECESARIO
+            $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION
         });
     }
 
@@ -29,6 +30,6 @@ class CreateTipoReporte extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_reporte');
+        Schema::dropIfExists('tbl_creditos');
     }
 }

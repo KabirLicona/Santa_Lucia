@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFactura extends Migration
+class CreateTblFactura extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFactura extends Migration
      */
     public function up()
     {
-        Schema::create('factura', function (Blueprint $table) {
+        Schema::create('tbl_factura', function (Blueprint $table) {
             $table->bigIncrements('COD_FACTURA');
             $table->string('NUMERO_FACTURA');
             $table->unsignedBigInteger('COD_CARTERA');
@@ -23,10 +23,10 @@ class CreateFactura extends Migration
             $table->date('FECHA_EXPIRACION');
             $table->float('INTERES_CREDITICIO');
             $table->unsignedBigInteger('COD_ESTADO');
-            $table->foreign('COD_CARTERA')->references('COD_CARTERA')->on('cartera');
-            $table->foreign('COD_CLIENTE')->references('COD_CLIENTE')->on('cliente');
-            $table->foreign('COD_CREDITO')->references('COD_CREDITO')->on('creditos');
-            $table->foreign('COD_ESTADO')->references('COD_ESTADO')->on('estado');
+            $table->foreign('COD_CARTERA')->references('COD_CARTERA')->on('tbl_cartera');
+            $table->foreign('COD_CLIENTE')->references('COD_CLIENTE')->on('tbl_cliente');
+            $table->foreign('COD_CREDITO')->references('COD_CREDITO')->on('tbl_creditos');
+            $table->foreign('COD_ESTADO')->references('COD_ESTADO')->on('tbl_estado');
             $table->timestamps();
             $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION
         });
@@ -39,6 +39,6 @@ class CreateFactura extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('factura');
+        Schema::dropIfExists('tbl_factura');
     }
 }

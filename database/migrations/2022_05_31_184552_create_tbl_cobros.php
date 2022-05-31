@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagos extends Migration
+class CreateTblCobros extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePagos extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
-            $table->bigIncrements('COD_PAGOS');
-            $table->unsignedBigInteger('COD_TIPO_PAGO');
+        Schema::create('tbl_cobros', function (Blueprint $table) {
+            $table->bigIncrements('COD_COBRO');
+            $table->unsignedBigInteger('COD_GESTION');
+            $table->date('FECHA_EXPIRACION');
             $table->float('INTERES', 10,2);
             $table->float('SUBTOTAL', 10,2);
             $table->float('TOTAL', 10,2);
-            $table->foreign('COD_TIPO_PAGO')->references('COD_TIPO_PAGO')->on('tipo_pagos');
+            $table->float('PAGADO', 10,2);
+            $table->foreign('COD_GESTION')->references('COD_GESTION')->on('tbl_gestion_cliente');
             $table->timestamps();
             $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION
         });
@@ -32,6 +34,6 @@ class CreatePagos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('tbl_cobros');
     }
 }

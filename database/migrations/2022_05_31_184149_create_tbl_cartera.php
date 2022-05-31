@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGestionConserje extends Migration
+class CreateTblCartera extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateGestionConserje extends Migration
      */
     public function up()
     {
-        Schema::create('gestion_conserje', function (Blueprint $table) {
-            $table->bigIncrements('COD_CONSERJE');
-            $table->unsignedBigInteger('COD_GESTION');
-            $table->string('OBSERVACION');
-            $table->string('IMAGEN');
-            $table->foreign('COD_GESTION')->references('COD_GESTION')->on('gestion_cliente');
+        Schema::create('tbl_cartera', function (Blueprint $table) {
+            $table->bigIncrements('COD_CARTERA');
+            $table->float('VALOR_ACUMULADO', 10,2);
+            $table->float('SALDO', 10,2);
+            $table->unsignedBigInteger('COD_ESTADO');
+            $table->string('OBSERVACIONES');
+            $table->foreign('COD_ESTADO')->references('COD_ESTADO')->on('tbl_estado');
             $table->timestamps();
             $table->softDeletes(); //ESTE LO AGREGUE PARA QUE SE MIRE LA FECHA DE ELIMINACION
         });
@@ -31,6 +32,6 @@ class CreateGestionConserje extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gestion_conserje');
+        Schema::dropIfExists('tbl_cartera');
     }
 }

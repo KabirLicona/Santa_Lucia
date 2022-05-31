@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstado extends Migration
+class CreateTblEstado extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEstado extends Migration
      */
     public function up()
     {
-        Schema::create('estado', function (Blueprint $table) {
+        Schema::create('tbl_estado', function (Blueprint $table) {
             $table->bigIncrements('COD_ESTADO');
             $table->enum("TIPO_ESTADO",["A","M","X"]);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEstado extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado');
+        Schema::dropIfExists('tbl_estado');
     }
 }
